@@ -21,5 +21,6 @@ elif last_digit == 0:
     # Print the appropriate message if the last digit is 0
 else:
     # If the last digit is not greater than 5 or 0, it must be between 1 and 5
-    print(f"Last digit of {number} is {last_digit} and is less than 6 and not 0")
+    print(f"Last digit of {number} is {last_digit} and is less than 6\
+and not 0")
     # Print the appropriate message if the last digit is between 1 and 5
