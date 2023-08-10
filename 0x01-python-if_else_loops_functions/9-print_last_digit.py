@@ -12,5 +12,6 @@ def print_last_digit(number):
 
     # Print the last digit without a newline
     print("{:d}".format(last_digit), end='')
+
     # Return the last digit
     return last_digit
