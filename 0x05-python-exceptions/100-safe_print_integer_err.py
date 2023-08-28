@@ -1,8 +1,8 @@
 #!/usr/bin/python3
+import sys
 """ function to print an integer """
 
 
-import sys
 def safe_print_integer_err(value):
     try:
         print("{:d}".format(value))
