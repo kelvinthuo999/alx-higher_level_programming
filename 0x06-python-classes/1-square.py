@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ definition of a class """
 
+
 class Square:
     """ this class defines a square.
     Attributes: size (int): The size of the square.
