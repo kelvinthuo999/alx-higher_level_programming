@@ -6,22 +6,17 @@ class Square:
     """
     This class defines a square.
     Attributes:__size (int): The size of the square.
-                position(int tuple): position of square
+               __position (tuple): The position of the square.
     """
 
     def __init__(self, size=0, position=(0, 0)):
         """
         Initializes a new instance of the Square class.
         Args:size (int): The size defaults to 0.
-             position (int tuple): position of the square
+             position (tuple): The position defaults to (0, 0).
         """
-        if not (isinstance(size, int)):
-            raise TypeError("size must be an integer")
-        if size < 0:
-            raise ValueError("size must be >= 0")
-
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
@@ -45,6 +40,27 @@ class Square:
             raise ValueError("size must be >= 0")
         self.__size = value
 
+    @property
+    def position(self):
+        """
+        Getter method for retrieving the position of the square.
+        Returns:tuple: The position of the square.
+        """
+        return (self.__position)
+
+    @position.setter
+    def position(self, value):
+        """
+        Setter method for setting the position of the square.
+        Args:value (tuple): The new position for the square.
+        Raises:TypeError: If value is not a tuple of 2 positive integers.
+        """
+        if type(value) is not tuple or len(value) != 2 or \
+                type(value[0]) is not int or type(value[1]) is not int \
+                or value[0] < 0 or value[1] < 0:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        self.__position = value
+
     def area(self):
         """
         Calculates the area of the square.
@@ -54,13 +70,15 @@ class Square:
 
     def my_print(self):
         """
-        Prints a square using the character #
+        Prints a square using the character #.
+        If size is equal to 0, prints an empty line.
+        Position should be used to determine spacing.
         """
         if self.__size == 0:
             print()
         else:
-            height, width = 0, 0
-            for height in range(self.__size):
-                for width in range(self.__size):
-                    print("#", end="")
+            for i in range(self.__position[1]):
                 print()
+            for height in range(self.__size):
+                print(" " * self.__position[0], end="")
+                print("#" * self.__size)
