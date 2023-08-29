@@ -6,13 +6,14 @@ class Square:
     """
     This class defines a square.
     Attributes:__size (int): The size of the square.
+                position(int tuple): position of square
     """
 
     def __init__(self, size=0, position=(0, 0)):
         """
         Initializes a new instance of the Square class.
-        Args:size (int, optional): The size defaults to 0.
-             position: position of the square
+        Args:size (int): The size defaults to 0.
+             position (int tuple): position of the square
         """
         if not (isinstance(size, int)):
             raise TypeError("size must be an integer")
