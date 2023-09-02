@@ -1,0 +1,70 @@
+Test cases for 0-add_integer module
+===================================
+
+The 0-add_integer module takes two integers or floats as arguments and returns their sum.
+
+Usage
+=====
+
+Importing function from the module:
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+Adding two even integers (a = 4 and b = 6)
+    >>> add_integer(4, 6)
+    10
+
+Adding two odd integers (a = 9 and b = 3)
+    >>> add_integer(9, 3)
+    12
+
+Adding a negative integer and a positive float (a = -7 and b = 4.5)
+    >>> add_integer(-7, 4.5)
+    4
+
+Adding two large integers (a = 9999999 and b = 8888888)
+    >>> add_integer(9999999, 8888888)
+    18888887
+
+Adding two small floats (a = 0.001 and b = 0.002)
+    >>> add_integer(0.001, 0.002)
+    0
+
+Adding two integers with a large absolute difference (a = 1000000 and b = -1)
+    >>> add_integer(1000000, -1)
+    999999
+
+Adding a large float and a small float (a = 1000.5 and b = 0.1)
+    >>> add_integer(1000.5, 0.1)
+    1000
+
+Case: Passing non-numeric values
+
+Adding an integer number and a string (a = 4 and b = "ALX")
+    >>> add_integer(4, "ALX")
+    Traceback (most recent call last):
+        ...
+    TypeError: b must be an integer
+
+Adding a list and a dictionary (a = [1, 2, 3] and b = {"key": "value"})
+    >>> add_integer([1, 2, 3], {"key": "value"})
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Passing a string as the only argument
+    >>> add_integer("Hello")
+    Traceback (most recent call last):
+        ...
+    TypeError: a must be an integer
+
+Case: Overflow and NaN
+
+Adding a very large integer (a = 10^100) and a small integer (b = 1)
+    >>> add_integer(10**100, 1)
+    10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001
+
+Adding a NaN value (a = float('nan') and b = 42)
+    >>> add_integer(float('nan'), 42)
+    Traceback (most recent call last):
+        ...
+    ValueError: cannot convert float NaN to integer
