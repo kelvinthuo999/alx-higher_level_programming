@@ -1,0 +1,28 @@
+# Test cases for 4-say_my_name module
+=====================================
+
+The 4-say_my_name module prints a message containing the first name and optionally the last name.
+
+Usage
+=====
+
+Importing function from the module:
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+
+# Test cases with valid inputs
+>>> say_my_name("John", "Doe")
+My name is John Doe.
+
+>>> say_my_name("Alice")
+My name is Alice.
+
+# Test cases with invalid inputs
+>>> say_my_name(123, "Smith")
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+
+>>> say_my_name("Jane", 456)
+Traceback (most recent call last):
+    ...
+TypeError: last_name must be a string
