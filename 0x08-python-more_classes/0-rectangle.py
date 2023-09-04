@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-""" an empty class """
+""" an empty class to define a rectangle"""
 
 
 class Rectangle:
-    """
-    This is the Rectangle class.
-    """
+    """ an empty class to be a blueprint for a rectangle """
     pass
