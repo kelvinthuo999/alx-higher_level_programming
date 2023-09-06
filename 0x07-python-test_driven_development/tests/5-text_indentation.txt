@@ -1,0 +1,50 @@
+# Test cases for 5-text_indentation module
+=========================================
+
+The 5-text_indentation module prints a text with 2 new lines after '.', '?', and ':' characters.
+
+Usage
+=====
+
+Importing function from the module:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+# Test cases with valid inputs
+>>> text = "This is a test. A simple test: With some punctuation? And more."
+>>> text_indentation(text)
+This is a test.
+
+A simple test:
+
+With some punctuation?
+
+And more.
+
+>>> text = "Hello? How are you doing? Good!"
+>>> text_indentation(text)
+Hello?
+
+How are you doing?
+
+Good!
+
+>>> text = "One: Two. Three: Four?"
+>>> text_indentation(text)
+One:
+
+Two.
+
+Three:
+
+Four?
+
+# Test cases with invalid inputs
+>>> text_indentation(123)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+>>> text_indentation(["Hello"])
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
