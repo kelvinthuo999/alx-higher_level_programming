@@ -1,0 +1,81 @@
+============================
+How to Use lazy_matrix_mul Function
+============================
+
+This module defines a matrix multiplication function `lazy_matrix_mul(m_a, m_b)`
+that uses NumPy for computation.
+
+Usage
+=====
+`lazy_matrix_mul(m_a, m_b)` returns a new matrix representing the multiplication
+of `m_a` by `m_b` using NumPy.
+
+::
+
+    >>> from my_module import lazy_matrix_mul
+
+    # Test Case 1: Valid matrix multiplication
+    >>> m_a = [
+    ...     [1, 2],
+    ...     [3, 4],
+    ... ]
+    >>> m_b = [
+    ...     [5, 6],
+    ...     [7, 8],
+    ... ]
+    >>> result = lazy_matrix_mul(m_a, m_b)
+    >>> result.tolist()
+    [[19, 22], [43, 50]]
+
+    # Test Case 2: Multiplication with floating-point numbers
+    >>> m_a = [
+    ...     [1.2, 5.5, 6.2],
+    ...     [4.66, 12.3, -9.2]
+    ... ]
+    >>> m_b = [
+    ...     [5.0, 3.3],
+    ...     [-2.9, 4.4],
+    ...     [7.2, 4.4]
+    ... ]
+    >>> result = lazy_matrix_mul(m_a, m_b)
+    >>> result.tolist()
+    [[34.69, 55.44], [-78.61, 29.018]]
+
+    # Test Case 3: Multiplication with integers and floats
+    >>> m_a = [
+    ...     [1, 2.2, 3.3, 4],
+    ...     [5, 6, 7, 8.8],
+    ... ]
+    >>> m_b = [
+    ...     [1.1, 2, 3.3],
+    ...     [4.0, 5.5, 6],
+    ...     [7, 8, 9],
+    ...     [10.01, 11, 12.3]
+    ... ]
+    >>> result = lazy_matrix_mul(m_a, m_b)
+    >>> result.tolist()
+    [[73.04, 84.5, 95.4], [166.59, 195.8, 223.74]]
+
+    # Test Case 4: Insufficient arguments (ValueError)
+    >>> lazy_matrix_mul()
+    Traceback (most recent call last):
+    ValueError: m_a and m_b can't be multiplied
+
+    # Test Case 5: Incompatible dimensions (ValueError)
+    >>> m_a = [
+    ...     [1, 2],
+    ...     [3, 4],
+    ... ]
+    >>> m_b = [
+    ...     [1, 2],
+    ...     [2, 3],
+    ...     [4, 5],
+    ... ]
+    >>> lazy_matrix_mul(m_a, m_b)
+    Traceback (most recent call last):
+    ValueError: m_a and m_b can't be multiplied
+
+    # Test Case 6: Empty matrices (ValueError)
+    >>> lazy_matrix_mul([], [[1, 2]])
+    Traceback (most recent call last):
+    ValueError: m_a and m_b can't be multiplied
