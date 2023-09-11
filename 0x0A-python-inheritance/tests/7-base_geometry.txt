@@ -1,0 +1,42 @@
+Test for base_geometry.py
+-------------------------------------------
+
+case 0: import
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>>
+
+case 1: area method
+>>> geometry = BaseGeometry()
+>>> geometry.area()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "base_geometry.py", line 6, in area
+    raise Exception("area() is not implemented")
+Exception: area() is not implemented
+>>>
+
+case 2: integer_validator valid
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("side_length", 5)
+>>>
+
+case 3: integer_validator invalid type
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("side_length", "string")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "base_geometry.py", line 14, in integer_validator
+    raise TypeError(f"{name} must be an integer")
+TypeError: side_length must be an integer
+>>>
+
+case 4: integer_validator invalid value
+>>> geometry = BaseGeometry()
+>>> geometry.integer_validator("side_length", -3)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "base_geometry.py", line 16, in integer_validator
+    raise ValueError(f"{name} must be greater than 0")
+ValueError: side_length must be greater than 0
+>>>
+
