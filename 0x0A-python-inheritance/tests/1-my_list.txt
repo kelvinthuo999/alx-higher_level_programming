@@ -1,9 +1,10 @@
-Test for mylist.py
+Test for 1-mylist.py
 -------------------------------------------
 
 case 0: import
->>> MyList = __import__('mylist').MyList
+>>> MyList = __import__('1-mylist').MyList
 >>>
+-------------------------------------------
 
 case 1: common case
 >>> my_list = MyList()
