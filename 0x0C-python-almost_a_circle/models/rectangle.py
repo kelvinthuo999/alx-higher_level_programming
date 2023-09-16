@@ -117,3 +117,7 @@ class Rectangle(Base):
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
+
+    def area(self):
+        """Calculate and return the area of the Rectangle."""
+        return self.__width * self.__height
