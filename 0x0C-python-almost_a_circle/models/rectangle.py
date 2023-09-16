@@ -1,4 +1,5 @@
-# models/rectangle.py
+#!/usr/bin/python3
+""" definition of class Rectangle """
 from models.base import Base
 
 
@@ -11,17 +12,18 @@ class Rectangle(Base):
         Args:
             width (int): The width of the rectangle.
             height (int): The height of the rectangle.
-            x (int, optional): The x-coordinate of the rectangle's position. Defaults to 0.
-            y (int, optional): The y-coordinate of the rectangle's position. Defaults to 0.
-            id (int, optional): The ID for the Rectangle object. Defaults to None.
+            x (int): x-coordinate of the rectangle's position. Defaults to 0.
+            y (int): y-coordinate of the rectangle's position. Defaults to 0.
+            id (int): ID for the Rectangle object. Defaults to None.
         """
-        super().__init__(id)  # Call the superclass constructor with the provided ID
+        """ Call the superclass constructor with the provided ID """
+        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
         self.y = y
 
-    # Getter and setter for width
+    """ Getter and setter for width """
     @property
     def width(self):
         return self.__width
@@ -88,7 +90,10 @@ class Rectangle(Base):
         Returns:
             str: A custom string representation of the Rectangle.
         """
-        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
+        return (
+                f"[Rectangle] ({self.id}) "
+                f"{self.__x}/{self.__y} - {self.__width}/{self.__height}"
+                )
 
     # Public method to update attributes using *args or **kwargs
     def update(self, *args, **kwargs):
