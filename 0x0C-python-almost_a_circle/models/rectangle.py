@@ -121,3 +121,17 @@ class Rectangle(Base):
     def area(self):
         """Calculate and return the area of the Rectangle."""
         return self.__width * self.__height
+
+    def to_dictionary(self):
+        """Return a dictionary representation of the Rectangle instance.
+
+        Returns:
+            dict: A dictionary with the attributes of the Rectangle.
+        """
+        return {
+            'id': self.id,
+            'width': self.__width,
+            'height': self.__height,
+            'x': self.__x,
+            'y': self.__y
+        }
