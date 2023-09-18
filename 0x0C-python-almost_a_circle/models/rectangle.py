@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """ definition of class Rectangle """
+import os
+import sys
 from models.base import Base
 
 

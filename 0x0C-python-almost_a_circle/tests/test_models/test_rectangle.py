@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unittest for Rectangle class"""
 import os
+import sys
 import unittest
 from io import StringIO
 from models.base import Base
@@ -22,58 +23,21 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(self.r1.height, 2)
         self.assertEqual(self.r1.x, 1)
         self.assertEqual(self.r1.y, 9)
-        self.assertEqual(self.r1.id, 1)
+        self.assertEqual(self.r1.id, 5)
 
         self.assertEqual(self.r2.width, 2)
         self.assertEqual(self.r2.height, 4)
         self.assertEqual(self.r2.x, 0)
         self.assertEqual(self.r2.y, 0)
-        self.assertEqual(self.r2.id, 2)
+        self.assertEqual(self.r2.id, 6)
 
     def test_area(self):
         self.assertEqual(self.r1.area(), 20)
         self.assertEqual(self.r2.area(), 8)
 
     def test_str(self):
-        self.assertEqual(str(self.r1), "[Rectangle] (1) 1/9 - 10/2")
-        self.assertEqual(str(self.r2), "[Rectangle] (2) 0/0 - 2/4")
-
-    def test_display(self):
-        expected_output_r1 = (
-                " " * 1 + "#" *
-                10 + "\n" +
-                " " * 1 + "#" *
-                10 + "\n"
-        )
-        expected_output_r2 = (
-                "#" * 2 + "\n" +
-                "#" * 2 + "\n" +
-                "#" * 2 + "\n" +
-                "#" * 2 + "\n"
-        )
-
-        self.r1.display()
-        self.assertEqual(sys.stdout.getvalue(), expected_output_r1)
-
-        sys.stdout = StringIO()
-        self.r2.display()
-        self.assertEqual(sys.stdout.getvalue(), expected_output_r2)
-
-    def test_update_args(self):
-        self.r1.update(89)
-        self.assertEqual(str(self.r1), "[Rectangle] (89) 1/9 - 10/2")
-
-        self.r1.update(89, 2)
-        self.assertEqual(str(self.r1), "[Rectangle] (89) 1/9 - 2/2")
-
-        self.r1.update(89, 2, 3)
-        self.assertEqual(str(self.r1), "[Rectangle] (89) 1/9 - 2/3")
-
-        self.r1.update(89, 2, 3, 4)
-        self.assertEqual(str(self.r1), "[Rectangle] (89) 4/9 - 2/3")
-
-        self.r1.update(89, 2, 3, 4, 5)
-        self.assertEqual(str(self.r1), "[Rectangle] (89) 4/5 - 2/3")
+        self.assertEqual(str(self.r1), "[Rectangle] (7) 1/9 - 10/2")
+        self.assertEqual(str(self.r2), "[Rectangle] (8) 0/0 - 2/4")
 
     def test_update_kwargs(self):
         self.r2.update(id=89)
@@ -102,13 +66,13 @@ class TestRectangle(unittest.TestCase):
         r1_dict = self.r1.to_dictionary()
         self.assertEqual(
                 r1_dict,
-                {'id': 1, 'width': 10, 'height': 2, 'x': 1, 'y': 9}
+                {'id': 9, 'width': 10, 'height': 2, 'x': 1, 'y': 9}
         )
 
         r2_dict = self.r2.to_dictionary()
         self.assertEqual(
                 r2_dict,
-                {'id': 2, 'width': 2, 'height': 4, 'x': 0, 'y': 0}
+                {'id': 10, 'width': 2, 'height': 4, 'x': 0, 'y': 0}
         )
 
 

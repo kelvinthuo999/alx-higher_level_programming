@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ definition of class Square """
+import os
 from models.rectangle import Rectangle
 
 

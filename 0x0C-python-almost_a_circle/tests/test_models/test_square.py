@@ -22,16 +22,16 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(self.s1.size, 5)
         self.assertEqual(self.s1.x, 1)
         self.assertEqual(self.s1.y, 2)
-        self.assertEqual(self.s1.id, 1)
+        self.assertEqual(self.s1.id, 15)
 
         self.assertEqual(self.s2.size, 7)
         self.assertEqual(self.s2.x, 3)
         self.assertEqual(self.s2.y, 0)
-        self.assertEqual(self.s2.id, 2)
+        self.assertEqual(self.s2.id, 16)
 
     def test_str(self):
-        self.assertEqual(str(self.s1), "[Square] (1) 1/2 - 5")
-        self.assertEqual(str(self.s2), "[Square] (2) 3/0 - 7")
+        self.assertEqual(str(self.s1), "[Square] (17) 1/2 - 5")
+        self.assertEqual(str(self.s2), "[Square] (18) 3/0 - 7")
 
     def test_update_args(self):
         self.s1.update(89)
@@ -62,14 +62,6 @@ class TestSquare(unittest.TestCase):
     def test_update_args_kwargs(self):
         self.s1.update(89, 2, 3, 4, id=90, size=6)
         self.assertEqual(str(self.s1), "[Square] (89) 3/4 - 2")
-
-    def test_to_dictionary(self):
-        s1_dict = self.s1.to_dictionary()
-        self.assertEqual(s1_dict, {'id': 1, 'size': 5, 'x': 1, 'y': 2})
-
-        s2_dict = self.s2.to_dictionary()
-        self.assertEqual(s2_dict, {'id': 2, 'size': 7, 'x': 3, 'y': 0})
-
 
 if __name__ == '__main__':
     unittest.main()

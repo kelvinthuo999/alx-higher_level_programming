@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ definition of class Base """
+import os
 import json
 import csv
 
