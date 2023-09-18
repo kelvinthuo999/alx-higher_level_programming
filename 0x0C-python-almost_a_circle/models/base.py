@@ -3,6 +3,7 @@
 import json
 import csv
 
+
 class Base:
     """Base class for managing id attribute."""
 
@@ -20,7 +21,7 @@ class Base:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
 
-    # Static method to return JSON string representation of a list of dictionaries
+    # Static method to return JSON string rep of a list of dictionaries
     @staticmethod
     def to_json_string(list_dictionaries):
         """Convert a list of dictionaries to a JSON string.
@@ -48,7 +49,8 @@ class Base:
             list_objs = []
         filename = cls.__name__ + ".json"
         with open(filename, mode="w", encoding="utf-8") as file:
-            json_string = cls.to_json_string([obj.to_dictionary() for obj in list_objs])
+            dict_list = [obj.to_dictionary() for obj in list_objs]
+            json_string = cls.to_json_string(dict_list)
             file.write(json_string)
 
     # Static method to return a list of dictionaries from a JSON string
@@ -57,7 +59,7 @@ class Base:
         """Convert a JSON string to a list of dictionaries.
 
         Args:
-            json_string (str): A JSON string representing a list of dictionaries.
+            json_string (str): JSON string to rep a list of dictionaries.
 
         Returns:
             list: A list of dictionaries.
@@ -75,21 +77,21 @@ class Base:
             **dictionary: Keyword arguments representing the attributes.
 
         Returns:
-            Base: An instance with attributes set based on the provided dictionary.
+            Base: instance with attr set based on the provided dictionary.
         """
         if cls.__name__ == "Rectangle":
-            dummy = cls(1, 1)  # Create a dummy Rectangle instance
+            dummy = cls(1, 1)  # a dummy Rectangle instance
         elif cls.__name__ == "Square":
-            dummy = cls(1)  # Create a dummy Square instance
+            dummy = cls(1)  # a dummy Square instance
         else:
             dummy = None
-        dummy.update(**dictionary)  # Update the dummy instance with the provided dictionary
+        dummy.update(**dictionary)
         return dummy
 
-    # Class method to load instances from a JSON file and return a list of instances
+    # Class method to load instances and return a list of instances
     @classmethod
     def load_from_file(cls):
-        """Load instances from a JSON file and return a list of instances.
+        """Load instances and return a list of instances.
 
         Returns:
             list: A list of instances.
@@ -99,7 +101,9 @@ class Base:
             with open(filename, mode="r", encoding="utf-8") as file:
                 json_string = file.read()
                 dictionaries = cls.from_json_string(json_string)
-                instances = [cls.create(**dictionary) for dictionary in dictionaries]
+                instances = []
+                for dictionary in dictionaries:
+                    instances.append(cls.create(**dictionary))
                 return instances
         except FileNotFoundError:
             return []
@@ -115,7 +119,14 @@ class Base:
             else:
                 for obj in list_objs:
                     if cls.__name__ == "Rectangle":
-                        writer.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                        data_to_write = [
+                                obj.id,
+                                obj.width,
+                                obj.height,
+                                obj.x,
+                                obj.y
+                        ]
+                        writer.writerow(data_to_write)
                     elif cls.__name__ == "Square":
                         writer.writerow([obj.id, obj.size, obj.x, obj.y])
 
@@ -129,9 +140,20 @@ class Base:
                 reader = csv.reader(file)
                 for row in reader:
                     if cls.__name__ == "Rectangle":
-                        obj = cls(int(row[1]), int(row[2]), int(row[3]), int(row[4]), int(row[0]))
+                        obj = cls(
+                                int(row[1]),
+                                int(row[2]),
+                                int(row[3]),
+                                int(row[4]),
+                                int(row[0])
+                        )
                     elif cls.__name__ == "Square":
-                        obj = cls(int(row[1]), int(row[2]), int(row[3]), int(row[0]))
+                        obj = cls(
+                                int(row[1]),
+                                int(row[2]),
+                                int(row[3]),
+                                int(row[0])
+                        )
                     obj_list.append(obj)
             return obj_list
         except FileNotFoundError:
