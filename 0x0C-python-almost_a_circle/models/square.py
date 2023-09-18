@@ -11,11 +11,11 @@ class Square(Rectangle):
 
         Args:
             size (int): The size of the square.
-            x (int, optional): The x-coordinate of the square's position. Defaults to 0.
-            y (int, optional): The y-coordinate of the square's position. Defaults to 0.
-            id (int, optional): The ID for the Square object. Defaults to None.
+            x (int): x-coordinate of the square's position. Defaults to 0.
+            y (int): y-coordinate of the square's position. Defaults to 0.
+            id (int): The ID for the Square object. Defaults to None.
         """
-        super().__init__(size, size, x, y, id)  # Call the superclass constructor with the provided size
+        super().__init__(size, size, x, y, id)
 
     # Getter and setter for size
     @property
