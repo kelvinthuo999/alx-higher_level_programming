@@ -2,18 +2,13 @@
 
 class Rectangle {
   constructor (w, h) {
-    // Check if w and h are positive integers
-    if (w > 0 && h > 0) {
-      // Initialize instance attributes width and height
+    // Check if w and h are numbers and positive integers
+    if (typeof w === 'number' && w > 0 && typeof h === 'number' && h > 0) {
+      // If conditions are met, initialize width and height
       this.width = w;
       this.height = h;
-    } else {
-      // Create an empty object if conditions are not met
-      this.width = undefined;
-      this.height = undefined;
     }
   }
 }
 
-// Export the Rectangle class
 module.exports = Rectangle;
