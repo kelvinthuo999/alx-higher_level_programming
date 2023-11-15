@@ -1,0 +1,3 @@
+# NOTES	
+- Introduction to JavaScript
+
