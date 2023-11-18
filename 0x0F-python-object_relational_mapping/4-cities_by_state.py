@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This script lists all cities from the database hbtn_0e_4_usa.
+This script lists all cities from
+the database `hbtn_0e_4_usa`.
 """
 
 import MySQLdb
@@ -8,7 +9,8 @@ from sys import argv
 
 def list_cities(username, password, db_name):
     """
-    Connect to the MySQL server and list all cities from the specified database.
+    Access the database and get the cities
+    from the database.
 
     Args:
         username (str): MySQL username.
@@ -23,34 +25,32 @@ def list_cities(username, password, db_name):
         connection = MySQLdb.connect(
             host="localhost", port=3306, user=username, passwd=password, db=db_name)
 
-        # Create a cursor object to interact with the database
-        cursor = connection.cursor()
+        with connection.cursor() as cursor:
+            # Execute the SQL query to fetch all cities with state names
+            query = "SELECT cities.id, cities.name, states.name \
+                     FROM cities JOIN states ON cities.state_id = states.id \
+                     ORDER BY cities.id ASC"
+            cursor.execute(query)
 
-        # Execute the SQL query to fetch all cities and order them by cities.id
-        query = "SELECT * FROM cities ORDER BY cities.id ASC"
-        cursor.execute(query)
+            # Fetch all the results
+            rows_selected = cursor.fetchall()
 
-        # Fetch all the results
-        cities = cursor.fetchall()
-
-        # Display the results
-        for city in cities:
-            print(city)
+            # Display the results
+            for row in rows_selected:
+                print(row)
 
     except MySQLdb.Error as e:
         print("MySQL Error:", e)
 
     finally:
-        # Close the cursor and connection
-        if cursor:
-            cursor.close()
+        # Close the connection
         if connection:
             connection.close()
 
 if __name__ == '__main__':
     """
-    Connect to the database and list all cities from the specified database
-    using command-line arguments.
+    Access the database and get the cities
+    from the database using command-line arguments.
     """
     # Check if all three arguments are provided
     if len(argv) != 4:
