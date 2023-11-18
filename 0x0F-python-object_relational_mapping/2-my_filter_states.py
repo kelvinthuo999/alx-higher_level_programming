@@ -4,6 +4,7 @@ This script displays all values in the states table of hbtn_0e_0_usa
 where the name matches the provided argument.
 """
 
+
 import MySQLdb
 from sys import argv
 
@@ -29,9 +30,9 @@ def search_states(username, password, db_name, state_name):
         # Create a cursor object to interact with the database
         cursor = connection.cursor()
 
-        # Execute the SQL query with user input
-        query = "SELECT * FROM states WHERE name = %s ORDER BY states.id ASC"
-        cursor.execute(query, (state_name,))
+        # Execute the SQL query with user input using format
+        query = "SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY states.id ASC".format(state_name)
+        cursor.execute(query)
 
         # Fetch all the results
         states = cursor.fetchall()
@@ -50,7 +51,7 @@ def search_states(username, password, db_name, state_name):
         if connection:
             connection.close()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     """
     Connect to the database and display all values in the states table
     where the name matches the provided argument using command-line arguments.
