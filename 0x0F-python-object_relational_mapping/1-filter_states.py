@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """
-This script lists all states from the specified database with names starting with 'N'.
+This script lists all states with
+a `name` starting with the letter `N`
+from the database `hbtn_0e_0_usa`.
 """
 
 import MySQLdb
@@ -8,8 +10,8 @@ from sys import argv
 
 def list_states_with_n(username, password, db_name):
     """
-    Connect to the MySQL server and list all states with names
-    starting with 'N' from the specified database.
+    Access the database and get the states
+    from the specified database.
 
     Args:
         username (str): MySQL username.
@@ -28,7 +30,7 @@ def list_states_with_n(username, password, db_name):
         cursor = connection.cursor()
 
         # Execute the SQL query to fetch states with names starting with 'N'
-        query = "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id"
+        query = "SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY states.id ASC"
         cursor.execute(query)
 
         # Fetch all the results
@@ -48,10 +50,10 @@ def list_states_with_n(username, password, db_name):
         if connection:
             connection.close()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     """
-    Access the database and get the states with names
-    starting with 'N' from the specified database using command-line arguments.
+    Access the database and get the states
+    from the specified database using command-line arguments.
     """
     # Check if all three arguments are provided
     if len(argv) != 4:
