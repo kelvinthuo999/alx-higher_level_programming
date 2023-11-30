@@ -1,12 +1,18 @@
 #!/usr/bin/python3
 """
-   This function finds a peak in a list of unsorted integers.
+   Finding a peak in a list of unsorted integers.
 """
 
 def find_peak(numbr):
-    '''
+    """
         Finds the peak in a list of numbers.
-    '''
+
+        Args:
+        - list_of_integers: A list of unsorted integers.
+
+        Returns:
+        - The peak element in the list.
+    """
     length = len(numbr)
 
     if length == 0:
