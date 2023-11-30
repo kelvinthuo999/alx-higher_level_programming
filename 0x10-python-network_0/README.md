@@ -1,0 +1,2 @@
+# Notes
+- Python network connection.
