@@ -1,0 +1,2 @@
+# Notes
+- Python networking
