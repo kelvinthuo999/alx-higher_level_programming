@@ -4,30 +4,37 @@ Use GitHub API to display user id using Basic Authentication with a personal acc
 """
 
 import requests
-import sys
+from requests.auth import HTTPBasicAuth
+from sys import argv
 
-if len(sys.argv) != 3:
-    print("Usage: ./github_id.py <kelvinthuo999> <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>")
-    sys.exit(1)
+def fetch_github_id(username, password):
+    url = 'https://api.github.com/user'
+    try:
+        response = requests.get(url, auth=HTTPBasicAuth(username, password))
 
-username = sys.argv[1]
-token = sys.argv[2]
+        # Check if the request was successful (status code 2xx)
+        response.raise_for_status()
 
-url = "https://api.github.com/user"
+        # Check if the response is in JSON format
+        user_data = response.json()
 
-# Set up the authentication using Basic Authentication with personal access token
-auth = (username, token)
+        # Check if 'id' is in the response
+        if 'id' in user_data:
+            return user_data['id']
+        else:
+            print("Unable to fetch user id. Check your credentials.")
+            return None
 
-try:
-    response = requests.get(url, auth=auth)
-    user_data = response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+        return None
 
-    if 'id' in user_data:
-        print("Your GitHub user id is:", user_data['id'])
+if __name__ == '__main__':
+    if len(argv) != 3:
+        print("Usage: ./github_id.py <username> <personal_access_token>")
     else:
-        print("Unable to fetch user id. Check your credentials.")
+        username, password = argv[1], argv[2]
+        github_id = fetch_github_id(username, password)
 
-except ValueError:
-    print("Not a valid JSON")
-except requests.exceptions.RequestException as e:
-    print("Error:", e)
+        if github_id is not None:
+            print("Your GitHub user id is:", github_id)
